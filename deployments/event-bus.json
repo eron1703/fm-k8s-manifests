@@ -1,0 +1,164 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "10",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"event-bus\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"event-bus\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\",\"prometheus.io/path\":\"/metrics\",\"prometheus.io/port\":\"9090\",\"prometheus.io/scrape\":\"true\"},\"labels\":{\"app\":\"event-bus\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"PORT\",\"value\":\"9013\"},{\"name\":\"APP_PORT\",\"value\":\"9013\"},{\"name\":\"APP_HOST\",\"value\":\"0.0.0.0\"},{\"name\":\"ARANGO_HOST\",\"value\":\"arangodb-db.data-ben.svc.cluster.local\"},{\"name\":\"REDIS_URL\",\"value\":\"redis://:flowmaster_redis_2025@redis-db.data-ben.svc.cluster.local:6379/0\"},{\"name\":\"LOG_LEVEL\",\"value\":\"debug\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"kafka-db.data-ben.svc.cluster.local:9092\"},{\"name\":\"PROMETHEUS_PORT\",\"value\":\"9090\"},{\"name\":\"DEBUG\",\"value\":\"true\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"flowmaster-config\"}},{\"secretRef\":{\"name\":\"flowmaster-secrets\"}}],\"image\":\"localhost:30500/flowmaster/event-bus-service:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"event-bus\",\"ports\":[{\"containerPort\":9013,\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"64Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"volumeMounts\":[{\"mountPath\":\"/app/src/main.py\",\"name\":\"main-patch\",\"subPath\":\"main.py\"}]}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30,\"volumes\":[{\"configMap\":{\"defaultMode\":420,\"name\":\"event-bus-main-patch\"},\"name\":\"main-patch\"}]}}}}\n"
+    },
+    "name": "event-bus",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "event-bus"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-27T05:42:11Z",
+          "prometheus.io/path": "/metrics",
+          "prometheus.io/port": "9090",
+          "prometheus.io/scrape": "true"
+        },
+        "labels": {
+          "app": "event-bus"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "PORT",
+                "value": "9013"
+              },
+              {
+                "name": "APP_PORT",
+                "value": "9013"
+              },
+              {
+                "name": "APP_HOST",
+                "value": "0.0.0.0"
+              },
+              {
+                "name": "ARANGO_HOST",
+                "value": "arangodb-db.dev-ben.svc.cluster.local"
+              },
+              {
+                "name": "REDIS_URL",
+                "value": "redis://:flowmaster_redis_2025@redis-db.dev-ben.svc.cluster.local:6379/0"
+              },
+              {
+                "name": "LOG_LEVEL",
+                "value": "debug"
+              },
+              {
+                "name": "KAFKA_BOOTSTRAP_SERVERS",
+                "value": "kafka-db.dev-ben.svc.cluster.local:9092"
+              },
+              {
+                "name": "PROMETHEUS_PORT",
+                "value": "9090"
+              },
+              {
+                "name": "DEBUG",
+                "value": "true"
+              }
+            ],
+            "envFrom": [
+              {
+                "configMapRef": {
+                  "name": "flowmaster-config"
+                }
+              },
+              {
+                "secretRef": {
+                  "name": "flowmaster-secrets"
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster/event-bus-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "livenessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/v1/monitoring/health",
+                "port": 9013,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 30,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 1
+            },
+            "name": "event-bus",
+            "ports": [
+              {
+                "containerPort": 9013,
+                "protocol": "TCP"
+              }
+            ],
+            "readinessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/v1/monitoring/ready",
+                "port": 9013,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 10,
+              "periodSeconds": 5,
+              "successThreshold": 1,
+              "timeoutSeconds": 1
+            },
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/app/src/main.py",
+                "name": "main-patch",
+                "subPath": "main.py"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "event-bus-main-patch"
+            },
+            "name": "main-patch"
+          }
+        ]
+      }
+    }
+  }
+}

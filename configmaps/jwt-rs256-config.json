@@ -1,0 +1,16 @@
+{
+  "apiVersion": "v1",
+  "data": {
+    "JWT_ALGORITHM": "RS256",
+    "JWT_SECRET": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As\ncnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I\nsDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz\nMlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0\ntsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ\nk/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V\n5QIDAQAB\n-----END PUBLIC KEY-----",
+    "JWT_SECRET_KEY": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As\ncnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I\nsDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz\nMlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0\ntsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ\nk/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V\n5QIDAQAB\n-----END PUBLIC KEY-----"
+  },
+  "kind": "ConfigMap",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"data\":{\"JWT_ALGORITHM\":\"RS256\",\"JWT_SECRET\":\"-----BEGIN PUBLIC KEY-----\\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As\\ncnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I\\nsDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz\\nMlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0\\ntsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ\\nk/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V\\n5QIDAQAB\\n-----END PUBLIC KEY-----\",\"JWT_SECRET_KEY\":\"-----BEGIN PUBLIC KEY-----\\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As\\ncnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I\\nsDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz\\nMlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0\\ntsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ\\nk/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V\\n5QIDAQAB\\n-----END PUBLIC KEY-----\"},\"kind\":\"ConfigMap\",\"metadata\":{\"annotations\":{},\"name\":\"jwt-rs256-config\",\"namespace\":\"dev-ben\"}}\n"
+    },
+    "name": "jwt-rs256-config",
+    "namespace": "dev-ben"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "apiVersion": "v1",
+  "data": {
+    "patch.py": "# Disable Instrumentator block (lines 182-190) in process-design main.py\nwith open(\"/app/src/main.py\", \"r\") as f:\n    lines = f.readlines()\n\npatched = []\nin_block = False\nfor i, line in enumerate(lines, 1):\n    if i == 182:\n        in_block = True\n    if in_block:\n        patched.append(\"# \" + line)\n        if i == 190:\n            in_block = False\n    else:\n        patched.append(line)\n\nwith open(\"/app/src/main.py\", \"w\") as f:\n    f.writelines(patched)\nprint(\"process-design patched: lines 182-190 disabled\")\n"
+  },
+  "kind": "ConfigMap",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"data\":{\"patch.py\":\"# Disable Instrumentator block (lines 182-190) in process-design main.py\\nwith open(\\\"/app/src/main.py\\\", \\\"r\\\") as f:\\n    lines = f.readlines()\\n\\npatched = []\\nin_block = False\\nfor i, line in enumerate(lines, 1):\\n    if i == 182:\\n        in_block = True\\n    if in_block:\\n        patched.append(\\\"# \\\" + line)\\n        if i == 190:\\n            in_block = False\\n    else:\\n        patched.append(line)\\n\\nwith open(\\\"/app/src/main.py\\\", \\\"w\\\") as f:\\n    f.writelines(patched)\\nprint(\\\"process-design patched: lines 182-190 disabled\\\")\\n\"},\"kind\":\"ConfigMap\",\"metadata\":{\"annotations\":{},\"name\":\"process-design-patch\",\"namespace\":\"dev-ben\"}}\n"
+    },
+    "name": "process-design-patch",
+    "namespace": "dev-ben"
+  }
+}

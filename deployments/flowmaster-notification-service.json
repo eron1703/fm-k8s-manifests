@@ -1,0 +1,171 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "7",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"flowmaster-notification-service\",\"component\":\"notification-service\",\"environment\":\"development\"},\"name\":\"flowmaster-notification-service\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"flowmaster-notification-service\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\"},\"labels\":{\"app\":\"flowmaster-notification-service\",\"component\":\"notification-service\",\"environment\":\"development\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"ENV\",\"value\":\"development\"},{\"name\":\"PORT\",\"value\":\"8021\"},{\"name\":\"ARANGO_HOST\",\"value\":\"arangodb-db.integrate\"},{\"name\":\"ARANGO_PORT\",\"value\":\"8529\"},{\"name\":\"ARANGO_DATABASE\",\"value\":\"flowmaster_dev\"},{\"name\":\"ARANGO_USER\",\"value\":\"root\"},{\"name\":\"ARANGO_PASSWORD\",\"value\":\"\",\"valueFrom\":{\"secretKeyRef\":{\"key\":\"ARANGO_PASSWORD\",\"name\":\"flowmaster-secrets\"}}},{\"name\":\"REDIS_HOST\",\"value\":\"redis-db.data-ben.svc.cluster.local\"},{\"name\":\"REDIS_PORT\",\"value\":\"6379\"},{\"name\":\"REDIS_DB\",\"value\":\"6\"},{\"name\":\"REDIS_PASSWORD\",\"value\":\"\",\"valueFrom\":{\"secretKeyRef\":{\"key\":\"REDIS_PASSWORD\",\"name\":\"flowmaster-secrets\"}}}],\"image\":\"localhost:30500/flowmaster-notification-service:integrate\",\"imagePullPolicy\":\"Always\",\"livenessProbe\":{\"failureThreshold\":3,\"httpGet\":{\"path\":\"/health/live\",\"port\":8021,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":30,\"periodSeconds\":10,\"successThreshold\":1,\"timeoutSeconds\":5},\"name\":\"notification-service\",\"ports\":[{\"containerPort\":8021,\"name\":\"http\",\"protocol\":\"TCP\"}],\"readinessProbe\":{\"failureThreshold\":3,\"httpGet\":{\"path\":\"/health/ready\",\"port\":8021,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":5,\"periodSeconds\":5,\"successThreshold\":1,\"timeoutSeconds\":3},\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"250m\",\"memory\":\"256Mi\"}},\"startupProbe\":{\"failureThreshold\":30,\"httpGet\":{\"path\":\"/health/live\",\"port\":8021,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":5,\"periodSeconds\":10,\"successThreshold\":1,\"timeoutSeconds\":1},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}}}}\n"
+    },
+    "labels": {
+      "app": "flowmaster-notification-service",
+      "component": "notification-service",
+      "environment": "development"
+    },
+    "name": "flowmaster-notification-service",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "flowmaster-notification-service"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-24T10:20:54Z"
+        },
+        "labels": {
+          "app": "flowmaster-notification-service",
+          "component": "notification-service",
+          "environment": "development"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "ENV",
+                "value": "development"
+              },
+              {
+                "name": "PORT",
+                "value": "8021"
+              },
+              {
+                "name": "ARANGO_HOST",
+                "value": "arangodb-db.dev-ben"
+              },
+              {
+                "name": "ARANGO_PORT",
+                "value": "8529"
+              },
+              {
+                "name": "ARANGO_DATABASE",
+                "value": "flowmaster_dev"
+              },
+              {
+                "name": "ARANGO_USER",
+                "value": "root"
+              },
+              {
+                "name": "ARANGO_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "ARANGO_PASSWORD",
+                    "name": "flowmaster-secrets"
+                  }
+                }
+              },
+              {
+                "name": "REDIS_HOST",
+                "value": "redis-db.dev-ben.svc.cluster.local"
+              },
+              {
+                "name": "REDIS_PORT",
+                "value": "6379"
+              },
+              {
+                "name": "REDIS_DB",
+                "value": "6"
+              },
+              {
+                "name": "REDIS_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "REDIS_PASSWORD",
+                    "name": "flowmaster-secrets"
+                  }
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster-notification-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "livenessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/health/live",
+                "port": 8021,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 30,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 5
+            },
+            "name": "notification-service",
+            "ports": [
+              {
+                "containerPort": 8021,
+                "name": "http",
+                "protocol": "TCP"
+              }
+            ],
+            "readinessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/health/ready",
+                "port": 8021,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 5,
+              "periodSeconds": 5,
+              "successThreshold": 1,
+              "timeoutSeconds": 3
+            },
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "250m",
+                "memory": "256Mi"
+              }
+            },
+            "startupProbe": {
+              "failureThreshold": 30,
+              "httpGet": {
+                "path": "/health/live",
+                "port": 8021,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 5,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 1
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  }
+}

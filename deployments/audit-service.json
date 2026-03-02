@@ -1,0 +1,84 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "5",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"audit-service\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"audit-service\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\"},\"labels\":{\"app\":\"audit-service\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"ARANGO_HOST\",\"value\":\"arangodb-db.data-ben.svc.cluster.local\"},{\"name\":\"ARANGO_PORT\",\"value\":\"8529\"},{\"name\":\"ARANGO_USER\",\"value\":\"root\"},{\"name\":\"ARANGO_PASSWORD\",\"value\":\"flowmaster25!\"},{\"name\":\"ARANGO_DB\",\"value\":\"flowmaster\"}],\"image\":\"localhost:30500/flowmaster/audit-service:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"audit-service\",\"ports\":[{\"containerPort\":8041,\"protocol\":\"TCP\"}],\"resources\":{},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}}}}\n"
+    },
+    "name": "audit-service",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "audit-service"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-24T10:20:54Z"
+        },
+        "labels": {
+          "app": "audit-service"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "ARANGO_HOST",
+                "value": "arangodb-db.dev-ben.svc.cluster.local"
+              },
+              {
+                "name": "ARANGO_PORT",
+                "value": "8529"
+              },
+              {
+                "name": "ARANGO_USER",
+                "value": "root"
+              },
+              {
+                "name": "ARANGO_PASSWORD",
+                "value": "flowmaster25!"
+              },
+              {
+                "name": "ARANGO_DB",
+                "value": "flowmaster"
+              }
+            ],
+            "image": "localhost:30500/flowmaster/audit-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "audit-service",
+            "ports": [
+              {
+                "containerPort": 8041,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {},
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  }
+}

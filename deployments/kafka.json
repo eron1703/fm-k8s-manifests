@@ -1,0 +1,121 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "4",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"kafka\"},\"name\":\"kafka\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"kafka\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\"},\"labels\":{\"app\":\"kafka\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"KAFKA_NODE_ID\",\"value\":\"1\"},{\"name\":\"KAFKA_PROCESS_ROLES\",\"value\":\"broker,controller\"},{\"name\":\"KAFKA_LISTENERS\",\"value\":\"PLAINTEXT://:9092,CONTROLLER://:9093\"},{\"name\":\"KAFKA_ADVERTISED_LISTENERS\",\"value\":\"PLAINTEXT://kafka-db.integrate.svc.cluster.local:9092\"},{\"name\":\"KAFKA_LISTENER_SECURITY_PROTOCOL_MAP\",\"value\":\"CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT\"},{\"name\":\"KAFKA_CONTROLLER_QUORUM_VOTERS\",\"value\":\"1@localhost:9093\"},{\"name\":\"KAFKA_CONTROLLER_LISTENER_NAMES\",\"value\":\"CONTROLLER\"},{\"name\":\"KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR\",\"value\":\"1\"},{\"name\":\"KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR\",\"value\":\"1\"},{\"name\":\"KAFKA_TRANSACTION_STATE_LOG_MIN_ISR\",\"value\":\"1\"},{\"name\":\"CLUSTER_ID\",\"value\":\"flowmaster-kafka-unified\"}],\"image\":\"localhost:30500/flowmaster/kafka:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"kafka\",\"ports\":[{\"containerPort\":9092,\"name\":\"plaintext\",\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"1Gi\"},\"requests\":{\"cpu\":\"50m\",\"memory\":\"512Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}}}}\n"
+    },
+    "labels": {
+      "app": "kafka"
+    },
+    "name": "kafka",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "kafka"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-24T10:20:54Z"
+        },
+        "labels": {
+          "app": "kafka"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "KAFKA_NODE_ID",
+                "value": "1"
+              },
+              {
+                "name": "KAFKA_PROCESS_ROLES",
+                "value": "broker,controller"
+              },
+              {
+                "name": "KAFKA_LISTENERS",
+                "value": "PLAINTEXT://:9092,CONTROLLER://:9093"
+              },
+              {
+                "name": "KAFKA_ADVERTISED_LISTENERS",
+                "value": "PLAINTEXT://kafka-db.dev-ben.svc.cluster.local:9092"
+              },
+              {
+                "name": "KAFKA_LISTENER_SECURITY_PROTOCOL_MAP",
+                "value": "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"
+              },
+              {
+                "name": "KAFKA_CONTROLLER_QUORUM_VOTERS",
+                "value": "1@localhost:9093"
+              },
+              {
+                "name": "KAFKA_CONTROLLER_LISTENER_NAMES",
+                "value": "CONTROLLER"
+              },
+              {
+                "name": "KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR",
+                "value": "1"
+              },
+              {
+                "name": "KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR",
+                "value": "1"
+              },
+              {
+                "name": "KAFKA_TRANSACTION_STATE_LOG_MIN_ISR",
+                "value": "1"
+              },
+              {
+                "name": "CLUSTER_ID",
+                "value": "flowmaster-kafka-unified"
+              }
+            ],
+            "image": "localhost:30500/flowmaster/kafka:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "kafka",
+            "ports": [
+              {
+                "containerPort": 9092,
+                "name": "plaintext",
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "1Gi"
+              },
+              "requests": {
+                "cpu": "50m",
+                "memory": "512Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  }
+}

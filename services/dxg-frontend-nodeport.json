@@ -1,0 +1,36 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"dxg-frontend-nodeport\",\"namespace\":\"dev-ben\"},\"spec\":{\"ports\":[{\"nodePort\":30350,\"port\":3000,\"targetPort\":3000}],\"selector\":{\"app\":\"dxg-frontend\"},\"type\":\"NodePort\"}}\n"
+    },
+    "name": "dxg-frontend-nodeport",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "clusterIP": "10.43.67.60",
+    "clusterIPs": [
+      "10.43.67.60"
+    ],
+    "externalTrafficPolicy": "Cluster",
+    "internalTrafficPolicy": "Cluster",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "ipFamilyPolicy": "SingleStack",
+    "ports": [
+      {
+        "nodePort": 30350,
+        "port": 3000,
+        "protocol": "TCP",
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "app": "dxg-frontend"
+    },
+    "sessionAffinity": "None",
+    "type": "NodePort"
+  }
+}

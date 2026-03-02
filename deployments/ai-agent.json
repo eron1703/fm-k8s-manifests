@@ -1,0 +1,204 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "5",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"ai-agent\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"ai-agent\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-25T12:30:01Z\",\"prometheus.io/path\":\"/metrics\",\"prometheus.io/port\":\"9090\",\"prometheus.io/scrape\":\"true\"},\"labels\":{\"app\":\"ai-agent\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"PORT\",\"value\":\"9006\"},{\"name\":\"APP_PORT\",\"value\":\"9006\"},{\"name\":\"APP_HOST\",\"value\":\"0.0.0.0\"},{\"name\":\"REDIS_URL\",\"value\":\"redis://:flowmaster_redis_2025@redis-db.data-ben.svc.cluster.local:6379/0\"},{\"name\":\"DEFAULT_LLM_PROVIDER\",\"value\":\"google\"},{\"name\":\"GEMINI_MODEL\",\"value\":\"gemini-2.0-flash\"},{\"name\":\"LOG_LEVEL\",\"value\":\"debug\"},{\"name\":\"DEBUG\",\"value\":\"true\"},{\"name\":\"GEMINI_API_KEY\",\"value\":\"REDACTED_GOOGLE_API_KEY\"},{\"name\":\"GOOGLE_API_KEY\",\"value\":\"REDACTED_GOOGLE_API_KEY\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"flowmaster-config\"}},{\"secretRef\":{\"name\":\"flowmaster-secrets\"}}],\"image\":\"localhost:30500/flowmaster/ai-agent-service:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"ai-agent\",\"ports\":[{\"containerPort\":9006,\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"64Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"volumeMounts\":[{\"mountPath\":\"/app/src/core/llm_service.py\",\"name\":\"llm-patch\",\"subPath\":\"llm_service.py\"},{\"mountPath\":\"/app/src/api/openai_compat.py\",\"name\":\"openai-compat-vol\",\"subPath\":\"openai_compat.py\"},{\"mountPath\":\"/app/src/app.py\",\"name\":\"app-patch-vol\",\"subPath\":\"app.py\"},{\"mountPath\":\"/app/src/api/agents.py\",\"name\":\"agents-patch-vol\",\"subPath\":\"agents.py\"},{\"mountPath\":\"/app/src/api/v1/agents.py\",\"name\":\"v1-agents-patch-vol\",\"subPath\":\"agents.py\"},{\"mountPath\":\"/app/src/api/v1/dependencies/auth.py\",\"name\":\"auth-patch-vol\",\"subPath\":\"auth.py\"}]}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30,\"volumes\":[{\"configMap\":{\"defaultMode\":420,\"name\":\"ai-agent-llm-patch\"},\"name\":\"llm-patch\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"ai-agent-openai-compat\"},\"name\":\"openai-compat-vol\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"ai-agent-app-patch\"},\"name\":\"app-patch-vol\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"ai-agent-agents-patch\"},\"name\":\"agents-patch-vol\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"ai-agent-v1-agents-patch\"},\"name\":\"v1-agents-patch-vol\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"ai-agent-auth-patch\"},\"name\":\"auth-patch-vol\"}]}}}}\n"
+    },
+    "name": "ai-agent",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "ai-agent"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-25T12:30:01Z",
+          "prometheus.io/path": "/metrics",
+          "prometheus.io/port": "9090",
+          "prometheus.io/scrape": "true"
+        },
+        "labels": {
+          "app": "ai-agent"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "PORT",
+                "value": "9006"
+              },
+              {
+                "name": "APP_PORT",
+                "value": "9006"
+              },
+              {
+                "name": "APP_HOST",
+                "value": "0.0.0.0"
+              },
+              {
+                "name": "REDIS_URL",
+                "value": "redis://:flowmaster_redis_2025@redis-db.dev-ben.svc.cluster.local:6379/0"
+              },
+              {
+                "name": "DEFAULT_LLM_PROVIDER",
+                "value": "google"
+              },
+              {
+                "name": "GEMINI_MODEL",
+                "value": "gemini-2.0-flash"
+              },
+              {
+                "name": "LOG_LEVEL",
+                "value": "debug"
+              },
+              {
+                "name": "DEBUG",
+                "value": "true"
+              },
+              {
+                "name": "GEMINI_API_KEY",
+                "value": "REDACTED_GOOGLE_API_KEY"
+              },
+              {
+                "name": "GOOGLE_API_KEY",
+                "value": "REDACTED_GOOGLE_API_KEY"
+              }
+            ],
+            "envFrom": [
+              {
+                "configMapRef": {
+                  "name": "flowmaster-config"
+                }
+              },
+              {
+                "secretRef": {
+                  "name": "flowmaster-secrets"
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster/ai-agent-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "ai-agent",
+            "ports": [
+              {
+                "containerPort": 9006,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/app/src/core/llm_service.py",
+                "name": "llm-patch",
+                "subPath": "llm_service.py"
+              },
+              {
+                "mountPath": "/app/src/api/openai_compat.py",
+                "name": "openai-compat-vol",
+                "subPath": "openai_compat.py"
+              },
+              {
+                "mountPath": "/app/src/app.py",
+                "name": "app-patch-vol",
+                "subPath": "app.py"
+              },
+              {
+                "mountPath": "/app/src/api/agents.py",
+                "name": "agents-patch-vol",
+                "subPath": "agents.py"
+              },
+              {
+                "mountPath": "/app/src/api/v1/agents.py",
+                "name": "v1-agents-patch-vol",
+                "subPath": "agents.py"
+              },
+              {
+                "mountPath": "/app/src/api/v1/dependencies/auth.py",
+                "name": "auth-patch-vol",
+                "subPath": "auth.py"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "ai-agent-llm-patch"
+            },
+            "name": "llm-patch"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "ai-agent-openai-compat"
+            },
+            "name": "openai-compat-vol"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "ai-agent-app-patch"
+            },
+            "name": "app-patch-vol"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "ai-agent-agents-patch"
+            },
+            "name": "agents-patch-vol"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "ai-agent-v1-agents-patch"
+            },
+            "name": "v1-agents-patch-vol"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "ai-agent-auth-patch"
+            },
+            "name": "auth-patch-vol"
+          }
+        ]
+      }
+    }
+  }
+}

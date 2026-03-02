@@ -1,0 +1,122 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "5",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"engage-collaboration\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"engage-collaboration\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-25T08:14:14Z\"},\"labels\":{\"app\":\"engage-collaboration\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"JWT_ALGORITHM\",\"value\":\"RS256\"},{\"name\":\"JWT_SECRET_KEY\",\"value\":\"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As cnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I sDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz MlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0 tsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ k/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V 5QIDAQAB -----END PUBLIC KEY-----\"},{\"name\":\"JWT_SECRET\",\"value\":\"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As cnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I sDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz MlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0 tsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ k/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V 5QIDAQAB -----END PUBLIC KEY-----\"},{\"name\":\"ARANGODB_URL\",\"value\":\"http://arangodb-db.data-ben.svc.cluster.local:8529\"},{\"name\":\"REDIS_URL\",\"value\":\"redis://:flowmaster_redis_2025@redis-db.data-ben.svc.cluster.local:6379/0\"},{\"name\":\"REDIS_HOST\",\"value\":\"redis-db.data-ben.svc.cluster.local\"},{\"name\":\"REDIS_PORT\",\"value\":\"6379\"},{\"name\":\"REDIS_PASSWORD\",\"value\":\"flowmaster_redis_2025\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"flowmaster-config\"}},{\"secretRef\":{\"name\":\"flowmaster-secrets\"}},{\"configMapRef\":{\"name\":\"jwt-rs256-config\"}}],\"image\":\"localhost:30500/flowmaster/engage-collaboration:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"engage-collaboration\",\"ports\":[{\"containerPort\":8021,\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"64Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}}}}\n"
+    },
+    "name": "engage-collaboration",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "engage-collaboration"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-25T08:14:14Z"
+        },
+        "labels": {
+          "app": "engage-collaboration"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "JWT_ALGORITHM",
+                "value": "RS256"
+              },
+              {
+                "name": "JWT_SECRET_KEY",
+                "value": "-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As cnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I sDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz MlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0 tsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ k/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V 5QIDAQAB -----END PUBLIC KEY-----"
+              },
+              {
+                "name": "JWT_SECRET",
+                "value": "-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1LTw+qSibBgQeKkI+5As cnTdu4XV/fLl3o4wkK7DOeWb2FwLA3OKGcLzXVU6KZ8T+zT4lpqZMmapYD/2zD1I sDNyrXLa683X59eaJYCKyxZY16sQRcmuJOPbyRVZN7MjqnIr/iCEv5fHpnkjAvYz MlftTuCm+nU/fEgRY7niDNxiHIq+8mNAWe4s8B0IyHWt26mqdH1rtyewTSUclOF0 tsPlzPhb6fDO+v+gjVnE0+tSRDWYPwwawVOzSd84Lb5I0xHcSXeM/hbBd16WY8yJ k/ZP9sJ/5ydeQuJmlB8AtK7Iw7OXmxa1t7Q17R00BNC9Ju3knAXw7kJayOQstS9V 5QIDAQAB -----END PUBLIC KEY-----"
+              },
+              {
+                "name": "ARANGODB_URL",
+                "value": "http://arangodb-db.dev-ben.svc.cluster.local:8529"
+              },
+              {
+                "name": "REDIS_URL",
+                "value": "redis://:flowmaster_redis_2025@redis-db.dev-ben.svc.cluster.local:6379/0"
+              },
+              {
+                "name": "REDIS_HOST",
+                "value": "redis-db.dev-ben.svc.cluster.local"
+              },
+              {
+                "name": "REDIS_PORT",
+                "value": "6379"
+              },
+              {
+                "name": "REDIS_PASSWORD",
+                "value": "flowmaster_redis_2025"
+              }
+            ],
+            "envFrom": [
+              {
+                "configMapRef": {
+                  "name": "flowmaster-config"
+                }
+              },
+              {
+                "secretRef": {
+                  "name": "flowmaster-secrets"
+                }
+              },
+              {
+                "configMapRef": {
+                  "name": "jwt-rs256-config"
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster/engage-collaboration:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "engage-collaboration",
+            "ports": [
+              {
+                "containerPort": 8021,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  }
+}

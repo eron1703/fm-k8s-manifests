@@ -1,0 +1,176 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "5",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"organization-service\",\"tier\":\"backend\"},\"name\":\"organization-service\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"organization-service\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\"},\"labels\":{\"app\":\"organization-service\",\"tier\":\"backend\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"SERVICE_NAME\",\"value\":\"flowmaster-organization-service\"},{\"name\":\"PORT\",\"value\":\"8015\"},{\"name\":\"ARANGO_HOST\",\"value\":\"arangodb-db.data-ben.svc.cluster.local\"},{\"name\":\"ARANGO_PORT\",\"value\":\"8529\"},{\"name\":\"ARANGO_USER\",\"value\":\"root\"},{\"name\":\"ARANGO_DATABASE\",\"value\":\"flowmaster\"},{\"name\":\"ENVIRONMENT\",\"value\":\"development\"},{\"name\":\"DEBUG\",\"value\":\"true\"},{\"name\":\"LOG_LEVEL\",\"value\":\"INFO\"},{\"name\":\"CORS_ORIGINS\",\"value\":\"*\"},{\"name\":\"ARANGO_PASSWORD\",\"value\":\"\",\"valueFrom\":{\"secretKeyRef\":{\"key\":\"ARANGO_PASSWORD\",\"name\":\"organization-service-secrets\"}}},{\"name\":\"JWT_SECRET_KEY\",\"value\":\"\",\"valueFrom\":{\"secretKeyRef\":{\"key\":\"JWT_SECRET_KEY\",\"name\":\"organization-service-secrets\"}}}],\"image\":\"localhost:30500/flowmaster/organization-service:integrate\",\"imagePullPolicy\":\"Always\",\"livenessProbe\":{\"failureThreshold\":3,\"httpGet\":{\"path\":\"/health/live\",\"port\":8015,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":10,\"periodSeconds\":30,\"successThreshold\":1,\"timeoutSeconds\":5},\"name\":\"organization-service\",\"ports\":[{\"containerPort\":8015,\"protocol\":\"TCP\"}],\"readinessProbe\":{\"failureThreshold\":3,\"httpGet\":{\"path\":\"/health/ready\",\"port\":8015,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":5,\"periodSeconds\":10,\"successThreshold\":1,\"timeoutSeconds\":5},\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"128Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"volumeMounts\":[{\"mountPath\":\"/app/src/domain/models.py\",\"name\":\"models-fix\",\"subPath\":\"models.py\"}]}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30,\"volumes\":[{\"configMap\":{\"defaultMode\":420,\"name\":\"org-models-fix\"},\"name\":\"models-fix\"}]}}}}\n"
+    },
+    "labels": {
+      "app": "organization-service",
+      "tier": "backend"
+    },
+    "name": "organization-service",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "organization-service"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-24T10:20:54Z"
+        },
+        "labels": {
+          "app": "organization-service",
+          "tier": "backend"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "SERVICE_NAME",
+                "value": "flowmaster-organization-service"
+              },
+              {
+                "name": "PORT",
+                "value": "8015"
+              },
+              {
+                "name": "ARANGO_HOST",
+                "value": "arangodb-db.dev-ben.svc.cluster.local"
+              },
+              {
+                "name": "ARANGO_PORT",
+                "value": "8529"
+              },
+              {
+                "name": "ARANGO_USER",
+                "value": "root"
+              },
+              {
+                "name": "ARANGO_DATABASE",
+                "value": "flowmaster"
+              },
+              {
+                "name": "ENVIRONMENT",
+                "value": "development"
+              },
+              {
+                "name": "DEBUG",
+                "value": "true"
+              },
+              {
+                "name": "LOG_LEVEL",
+                "value": "INFO"
+              },
+              {
+                "name": "CORS_ORIGINS",
+                "value": "*"
+              },
+              {
+                "name": "ARANGO_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "ARANGO_PASSWORD",
+                    "name": "organization-service-secrets"
+                  }
+                }
+              },
+              {
+                "name": "JWT_SECRET_KEY",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "JWT_SECRET_KEY",
+                    "name": "organization-service-secrets"
+                  }
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster/organization-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "livenessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/health/live",
+                "port": 8015,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 10,
+              "periodSeconds": 30,
+              "successThreshold": 1,
+              "timeoutSeconds": 5
+            },
+            "name": "organization-service",
+            "ports": [
+              {
+                "containerPort": 8015,
+                "protocol": "TCP"
+              }
+            ],
+            "readinessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/health/ready",
+                "port": 8015,
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 5,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 5
+            },
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/app/src/domain/models.py",
+                "name": "models-fix",
+                "subPath": "models.py"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "org-models-fix"
+            },
+            "name": "models-fix"
+          }
+        ]
+      }
+    }
+  }
+}

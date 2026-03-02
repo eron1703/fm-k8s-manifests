@@ -1,0 +1,34 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"dxg-frontend\",\"namespace\":\"dev-ben\"},\"spec\":{\"ports\":[{\"port\":3000,\"targetPort\":3000}],\"selector\":{\"app\":\"dxg-frontend\"},\"type\":\"ClusterIP\"}}\n"
+    },
+    "name": "dxg-frontend",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "clusterIP": "10.43.211.108",
+    "clusterIPs": [
+      "10.43.211.108"
+    ],
+    "internalTrafficPolicy": "Cluster",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "ipFamilyPolicy": "SingleStack",
+    "ports": [
+      {
+        "port": 3000,
+        "protocol": "TCP",
+        "targetPort": 3000
+      }
+    ],
+    "selector": {
+      "app": "dxg-frontend"
+    },
+    "sessionAffinity": "None",
+    "type": "ClusterIP"
+  }
+}

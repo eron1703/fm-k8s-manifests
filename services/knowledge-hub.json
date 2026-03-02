@@ -1,0 +1,34 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"knowledge-hub\",\"namespace\":\"dev-ben\"},\"spec\":{\"internalTrafficPolicy\":\"Cluster\",\"ipFamilies\":[\"IPv4\"],\"ipFamilyPolicy\":\"SingleStack\",\"ports\":[{\"port\":9017,\"protocol\":\"TCP\",\"targetPort\":8009}],\"selector\":{\"app\":\"knowledge-hub\"},\"sessionAffinity\":\"None\",\"type\":\"ClusterIP\"}}\n"
+    },
+    "name": "knowledge-hub",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "clusterIP": "10.43.241.49",
+    "clusterIPs": [
+      "10.43.241.49"
+    ],
+    "internalTrafficPolicy": "Cluster",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "ipFamilyPolicy": "SingleStack",
+    "ports": [
+      {
+        "port": 9017,
+        "protocol": "TCP",
+        "targetPort": 8009
+      }
+    ],
+    "selector": {
+      "app": "knowledge-hub"
+    },
+    "sessionAffinity": "None",
+    "type": "ClusterIP"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"event-bus\",\"namespace\":\"dev-ben\"},\"spec\":{\"internalTrafficPolicy\":\"Cluster\",\"ipFamilies\":[\"IPv4\"],\"ipFamilyPolicy\":\"SingleStack\",\"ports\":[{\"port\":9013,\"protocol\":\"TCP\",\"targetPort\":9013}],\"selector\":{\"app\":\"event-bus\"},\"sessionAffinity\":\"None\",\"type\":\"ClusterIP\"}}\n"
+    },
+    "name": "event-bus",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "clusterIP": "10.43.135.78",
+    "clusterIPs": [
+      "10.43.135.78"
+    ],
+    "internalTrafficPolicy": "Cluster",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "ipFamilyPolicy": "SingleStack",
+    "ports": [
+      {
+        "port": 9013,
+        "protocol": "TCP",
+        "targetPort": 9013
+      }
+    ],
+    "selector": {
+      "app": "event-bus"
+    },
+    "sessionAffinity": "None",
+    "type": "ClusterIP"
+  }
+}

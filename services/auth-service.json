@@ -1,0 +1,34 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"auth-service\",\"namespace\":\"dev-ben\"},\"spec\":{\"internalTrafficPolicy\":\"Cluster\",\"ipFamilies\":[\"IPv4\"],\"ipFamilyPolicy\":\"SingleStack\",\"ports\":[{\"port\":9001,\"protocol\":\"TCP\",\"targetPort\":9001}],\"selector\":{\"app\":\"auth-service\"},\"sessionAffinity\":\"None\",\"type\":\"ClusterIP\"}}\n"
+    },
+    "name": "auth-service",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "clusterIP": "10.43.11.187",
+    "clusterIPs": [
+      "10.43.11.187"
+    ],
+    "internalTrafficPolicy": "Cluster",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "ipFamilyPolicy": "SingleStack",
+    "ports": [
+      {
+        "port": 9001,
+        "protocol": "TCP",
+        "targetPort": 9001
+      }
+    ],
+    "selector": {
+      "app": "auth-service"
+    },
+    "sessionAffinity": "None",
+    "type": "ClusterIP"
+  }
+}

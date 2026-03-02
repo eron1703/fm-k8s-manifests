@@ -1,0 +1,38 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "labels": {
+      "app": "business-rules-svc",
+      "module": "business-rules",
+      "service": "flowmaster"
+    },
+    "name": "business-rules-svc-np",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "clusterIP": "10.43.67.243",
+    "clusterIPs": [
+      "10.43.67.243"
+    ],
+    "externalTrafficPolicy": "Cluster",
+    "internalTrafficPolicy": "Cluster",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "ipFamilyPolicy": "SingleStack",
+    "ports": [
+      {
+        "nodePort": 30465,
+        "port": 9022,
+        "protocol": "TCP",
+        "targetPort": 9022
+      }
+    ],
+    "selector": {
+      "app": "business-rules-svc"
+    },
+    "sessionAffinity": "None",
+    "type": "NodePort"
+  }
+}

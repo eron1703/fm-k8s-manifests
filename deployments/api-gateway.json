@@ -1,0 +1,190 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "6",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"api-gateway\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"api-gateway\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-25T08:48:33Z\",\"prometheus.io/path\":\"/metrics\",\"prometheus.io/port\":\"9090\",\"prometheus.io/scrape\":\"true\"},\"labels\":{\"app\":\"api-gateway\"}},\"spec\":{\"containers\":[{\"args\":[\"python3 /patches/patch.py \\u0026\\u0026 exec /opt/venv/bin/python /opt/venv/bin/uvicorn src.main:app --host 0.0.0.0 --port 9000 --reload\"],\"command\":[\"sh\",\"-c\"],\"env\":[{\"name\":\"PORT\",\"value\":\"9000\"},{\"name\":\"APP_PORT\",\"value\":\"9000\"},{\"name\":\"APP_HOST\",\"value\":\"0.0.0.0\"},{\"name\":\"JWT_SECRET\",\"value\":\"flowmaster-jwt-secret-2025\"},{\"name\":\"ROUTES_CONFIG_PATH\",\"value\":\"/app/configs/routes.yaml\"},{\"name\":\"SERVICES_CONFIG_PATH\",\"value\":\"/app/configs/services.yaml\"},{\"name\":\"JWT_SECRET_KEY\",\"value\":\"flowmaster-jwt-secret-2025\"},{\"name\":\"AUTH_SERVICE_URL\",\"value\":\"http://auth-service.dev-ben.svc.cluster.local:9001\"},{\"name\":\"LOG_LEVEL\",\"value\":\"debug\"},{\"name\":\"DEBUG\",\"value\":\"true\"},{\"name\":\"VERIFY_WITH_AUTH_SERVICE\",\"value\":\"true\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"flowmaster-config\"}},{\"secretRef\":{\"name\":\"flowmaster-secrets\"}}],\"image\":\"localhost:30500/flowmaster-api-gateway-service:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"api-gateway\",\"ports\":[{\"containerPort\":9000,\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"128Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"volumeMounts\":[{\"mountPath\":\"/app/configs/routes.yaml\",\"name\":\"routes-config\",\"subPath\":\"routes.yaml\"},{\"mountPath\":\"/app/configs/services.yaml\",\"name\":\"services-config\",\"subPath\":\"services.yaml\"},{\"mountPath\":\"/patches\",\"name\":\"patches\"},{\"mountPath\":\"/app/src/services/router.py\",\"name\":\"router-patch\",\"subPath\":\"router.py\"}]}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30,\"volumes\":[{\"configMap\":{\"defaultMode\":420,\"name\":\"gw-routes-yaml\"},\"name\":\"routes-config\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"api-gateway-services\"},\"name\":\"services-config\"},{\"configMap\":{\"defaultMode\":493,\"name\":\"gateway-auth-patch\"},\"name\":\"patches\"},{\"configMap\":{\"defaultMode\":420,\"name\":\"gw-router-patch\"},\"name\":\"router-patch\"}]}}}}\n"
+    },
+    "name": "api-gateway",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "api-gateway"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-27T06:03:12Z",
+          "prometheus.io/path": "/metrics",
+          "prometheus.io/port": "9090",
+          "prometheus.io/scrape": "true"
+        },
+        "labels": {
+          "app": "api-gateway"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "args": [
+              "python3 /patches/patch.py && exec /opt/venv/bin/python /opt/venv/bin/uvicorn src.main:app --host 0.0.0.0 --port 9000 --reload"
+            ],
+            "command": [
+              "sh",
+              "-c"
+            ],
+            "env": [
+              {
+                "name": "PORT",
+                "value": "9000"
+              },
+              {
+                "name": "APP_PORT",
+                "value": "9000"
+              },
+              {
+                "name": "APP_HOST",
+                "value": "0.0.0.0"
+              },
+              {
+                "name": "JWT_SECRET",
+                "value": "flowmaster-jwt-secret-2025"
+              },
+              {
+                "name": "ROUTES_CONFIG_PATH",
+                "value": "/app/configs/routes.yaml"
+              },
+              {
+                "name": "SERVICES_CONFIG_PATH",
+                "value": "/app/configs/services.yaml"
+              },
+              {
+                "name": "JWT_SECRET_KEY",
+                "value": "flowmaster-jwt-secret-2025"
+              },
+              {
+                "name": "AUTH_SERVICE_URL",
+                "value": "http://auth-service.dev-ben.svc.cluster.local:9001"
+              },
+              {
+                "name": "LOG_LEVEL",
+                "value": "debug"
+              },
+              {
+                "name": "DEBUG",
+                "value": "true"
+              },
+              {
+                "name": "VERIFY_WITH_AUTH_SERVICE",
+                "value": "true"
+              }
+            ],
+            "envFrom": [
+              {
+                "configMapRef": {
+                  "name": "flowmaster-config"
+                }
+              },
+              {
+                "secretRef": {
+                  "name": "flowmaster-secrets"
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster-api-gateway-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "api-gateway",
+            "ports": [
+              {
+                "containerPort": 9000,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "128Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/app/configs/routes.yaml",
+                "name": "routes-config",
+                "subPath": "routes.yaml"
+              },
+              {
+                "mountPath": "/app/configs/services.yaml",
+                "name": "services-config",
+                "subPath": "services.yaml"
+              },
+              {
+                "mountPath": "/patches",
+                "name": "patches"
+              },
+              {
+                "mountPath": "/app/src/services/router.py",
+                "name": "router-patch",
+                "subPath": "router.py"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "gw-routes-yaml"
+            },
+            "name": "routes-config"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "api-gateway-services"
+            },
+            "name": "services-config"
+          },
+          {
+            "configMap": {
+              "defaultMode": 493,
+              "name": "gateway-auth-patch"
+            },
+            "name": "patches"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "gw-router-patch"
+            },
+            "name": "router-patch"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "5",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"prompt-engineering\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"prompt-engineering\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\"},\"labels\":{\"app\":\"prompt-engineering\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"PORT\",\"value\":\"9018\"},{\"name\":\"APP_PORT\",\"value\":\"9018\"},{\"name\":\"APP_HOST\",\"value\":\"0.0.0.0\"},{\"name\":\"JINJA2_UNDEFINED\",\"value\":\"Undefined\"},{\"name\":\"LOG_LEVEL\",\"value\":\"debug\"},{\"name\":\"DEBUG\",\"value\":\"true\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"flowmaster-config\"}},{\"secretRef\":{\"name\":\"flowmaster-secrets\"}}],\"image\":\"localhost:30500/flowmaster/prompt-engineering-service:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"prompt-engineering\",\"ports\":[{\"containerPort\":9018,\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"64Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}}}}\n"
+    },
+    "name": "prompt-engineering",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "prompt-engineering"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-27T06:07:23Z"
+        },
+        "labels": {
+          "app": "prompt-engineering"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "PORT",
+                "value": "9018"
+              },
+              {
+                "name": "APP_PORT",
+                "value": "9018"
+              },
+              {
+                "name": "APP_HOST",
+                "value": "0.0.0.0"
+              },
+              {
+                "name": "JINJA2_UNDEFINED",
+                "value": "Undefined"
+              },
+              {
+                "name": "LOG_LEVEL",
+                "value": "debug"
+              },
+              {
+                "name": "DEBUG",
+                "value": "true"
+              }
+            ],
+            "envFrom": [
+              {
+                "configMapRef": {
+                  "name": "flowmaster-config"
+                }
+              },
+              {
+                "secretRef": {
+                  "name": "flowmaster-secrets"
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster/prompt-engineering-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "prompt-engineering",
+            "ports": [
+              {
+                "containerPort": 9018,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  }
+}

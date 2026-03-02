@@ -1,0 +1,177 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "deployment.kubernetes.io/revision": "5",
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"agent-service\",\"namespace\":\"dev-ben\"},\"spec\":{\"progressDeadlineSeconds\":600,\"replicas\":1,\"revisionHistoryLimit\":10,\"selector\":{\"matchLabels\":{\"app\":\"agent-service\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":\"25%\",\"maxUnavailable\":\"25%\"},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"annotations\":{\"kubectl.kubernetes.io/restartedAt\":\"2026-02-24T10:20:54Z\"},\"labels\":{\"app\":\"agent-service\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"PORT\",\"value\":\"9006\"},{\"name\":\"APP_PORT\",\"value\":\"9006\"},{\"name\":\"APP_HOST\",\"value\":\"0.0.0.0\"},{\"name\":\"REDIS_URL\",\"value\":\"redis://:flowmaster_redis_2025@redis-db.data-ben.svc.cluster.local:6379/0\"},{\"name\":\"LOG_LEVEL\",\"value\":\"debug\"},{\"name\":\"DEBUG\",\"value\":\"true\"},{\"name\":\"PROCESS_DESIGN_SERVICE_URL\",\"value\":\"http://process-design.dev-ben.svc.cluster.local:9003\"},{\"name\":\"EXECUTION_ENGINE_URL\",\"value\":\"http://execution-engine.dev-ben.svc.cluster.local:9005\"},{\"name\":\"EVENT_BUS_URL\",\"value\":\"http://event-bus.dev-ben.svc.cluster.local:9013\"},{\"name\":\"EXECUTION_ENGINE_SERVICE_URL\",\"value\":\"http://execution-engine.dev-ben.svc.cluster.local:9005\"},{\"name\":\"EVENT_BUS_SERVICE_URL\",\"value\":\"http://event-bus.dev-ben.svc.cluster.local:9013\"},{\"name\":\"HUMAN_TASK_SERVICE_URL\",\"value\":\"http://human-task.dev-ben.svc.cluster.local:9006\"},{\"name\":\"WS_REDIS_HOST\",\"value\":\"redis-db.data-ben.svc.cluster.local\"},{\"name\":\"GEMINI_API_KEY\",\"value\":\"REDACTED_GOOGLE_API_KEY\"},{\"name\":\"GEMINI_API_KEY_BACKUP\",\"value\":\"REDACTED_GOOGLE_API_KEY\"},{\"name\":\"GOOGLE_API_KEY\",\"value\":\"REDACTED_GOOGLE_API_KEY\"},{\"name\":\"DEFAULT_LLM_PROVIDER\",\"value\":\"openrouter\"},{\"name\":\"DEFAULT_LLM_MODEL\",\"value\":\"google/gemini-2.0-flash-001\"},{\"name\":\"SMITHERY_API_KEY\",\"value\":\"e209c98e-c2aa-43e4-acdd-0c098b56bcd8\"},{\"name\":\"OPENROUTER_API_KEY\",\"value\":\"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\"},{\"name\":\"ARANGO_URL\",\"value\":\"http://arangodb-db.data-ben.svc.cluster.local:8529\"},{\"name\":\"ARANGO_USERNAME\",\"value\":\"root\"},{\"name\":\"ARANGO_DB\",\"value\":\"flowmaster\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"flowmaster-config\"}},{\"secretRef\":{\"name\":\"flowmaster-secrets\"}}],\"image\":\"localhost:30500/flowmaster/agent-service:integrate\",\"imagePullPolicy\":\"Always\",\"name\":\"agent-service\",\"ports\":[{\"containerPort\":9006,\"protocol\":\"TCP\"}],\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"64Mi\"}},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"terminationGracePeriodSeconds\":30}}}}\n"
+    },
+    "name": "agent-service",
+    "namespace": "dev-ben"
+  },
+  "spec": {
+    "progressDeadlineSeconds": 600,
+    "replicas": 1,
+    "revisionHistoryLimit": 10,
+    "selector": {
+      "matchLabels": {
+        "app": "agent-service"
+      }
+    },
+    "strategy": {
+      "rollingUpdate": {
+        "maxSurge": "25%",
+        "maxUnavailable": "25%"
+      },
+      "type": "RollingUpdate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kubectl.kubernetes.io/restartedAt": "2026-02-24T10:20:54Z"
+        },
+        "labels": {
+          "app": "agent-service"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "PORT",
+                "value": "9006"
+              },
+              {
+                "name": "APP_PORT",
+                "value": "9006"
+              },
+              {
+                "name": "APP_HOST",
+                "value": "0.0.0.0"
+              },
+              {
+                "name": "REDIS_URL",
+                "value": "redis://:flowmaster_redis_2025@redis-db.dev-ben.svc.cluster.local:6379/0"
+              },
+              {
+                "name": "LOG_LEVEL",
+                "value": "debug"
+              },
+              {
+                "name": "DEBUG",
+                "value": "true"
+              },
+              {
+                "name": "PROCESS_DESIGN_SERVICE_URL",
+                "value": "http://process-design.dev-ben.svc.cluster.local:9003"
+              },
+              {
+                "name": "EXECUTION_ENGINE_URL",
+                "value": "http://execution-engine.dev-ben.svc.cluster.local:9005"
+              },
+              {
+                "name": "EVENT_BUS_URL",
+                "value": "http://event-bus.dev-ben.svc.cluster.local:9013"
+              },
+              {
+                "name": "EXECUTION_ENGINE_SERVICE_URL",
+                "value": "http://execution-engine.dev-ben.svc.cluster.local:9005"
+              },
+              {
+                "name": "EVENT_BUS_SERVICE_URL",
+                "value": "http://event-bus.dev-ben.svc.cluster.local:9013"
+              },
+              {
+                "name": "HUMAN_TASK_SERVICE_URL",
+                "value": "http://human-task.dev-ben.svc.cluster.local:9006"
+              },
+              {
+                "name": "WS_REDIS_HOST",
+                "value": "redis-db.dev-ben.svc.cluster.local"
+              },
+              {
+                "name": "GEMINI_API_KEY",
+                "value": "REDACTED_GOOGLE_API_KEY"
+              },
+              {
+                "name": "GEMINI_API_KEY_BACKUP",
+                "value": "REDACTED_GOOGLE_API_KEY"
+              },
+              {
+                "name": "GOOGLE_API_KEY",
+                "value": "REDACTED_GOOGLE_API_KEY"
+              },
+              {
+                "name": "DEFAULT_LLM_PROVIDER",
+                "value": "openrouter"
+              },
+              {
+                "name": "DEFAULT_LLM_MODEL",
+                "value": "google/gemini-2.0-flash-001"
+              },
+              {
+                "name": "SMITHERY_API_KEY",
+                "value": "e209c98e-c2aa-43e4-acdd-0c098b56bcd8"
+              },
+              {
+                "name": "OPENROUTER_API_KEY",
+                "value": "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"
+              },
+              {
+                "name": "ARANGO_URL",
+                "value": "http://arangodb-db.dev-ben.svc.cluster.local:8529"
+              },
+              {
+                "name": "ARANGO_USERNAME",
+                "value": "root"
+              },
+              {
+                "name": "ARANGO_DB",
+                "value": "flowmaster"
+              }
+            ],
+            "envFrom": [
+              {
+                "configMapRef": {
+                  "name": "flowmaster-config"
+                }
+              },
+              {
+                "secretRef": {
+                  "name": "flowmaster-secrets"
+                }
+              }
+            ],
+            "image": "localhost:30500/flowmaster/agent-service:ben-dev",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "agent-service",
+            "ports": [
+              {
+                "containerPort": 9006,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File"
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "terminationGracePeriodSeconds": 30
+      }
+    }
+  }
+}
